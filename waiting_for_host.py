@@ -3,9 +3,11 @@ import os
 import socket
 import subprocess
 import time
+import sys
 
 red = '\033[31m'
 turquoise = '\033[36m'
+yellow = '\033[33m'
 
 def create_parser():
     parser = argparse.ArgumentParser()
@@ -25,7 +27,8 @@ def check_host(host, port):
         if result == 0: return True
         else: return False
     except socket.gaierror:
-        print(f'Name or service {host}:{port} not known')
+        print(f'{yellow} Name or service {host}:{port} not known')
+        sys.exit()
     except Exception as e:
         print(e)
 
